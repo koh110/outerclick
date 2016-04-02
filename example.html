@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>example</title>
+  <script src="dist/outerclick.js"></script>
+</head>
+<body>
+  <div class="target">target example</div>
+  <script type="text/javascript">
+    outerclick.addListener('.target', function(e) {
+      console.log('outer clicked!', e);
+    });
+  </script>
+</body>
+</html>
