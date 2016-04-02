@@ -2,6 +2,10 @@
   "name": "OuterClick",
   "version": "1.0.0",
   "description": "outside click event of the element",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/koh110/outerclick.git"
+  },
   "main": "dist/outerclick.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
