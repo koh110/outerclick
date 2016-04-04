@@ -6,9 +6,23 @@
   <script src="dist/outerclick.js"></script>
 </head>
 <body>
-  <div class="target">target example</div>
+<style>
+  .wrapper {
+    display: flex;
+    justify-content: center;
+  }
+  .target {
+    margin: 30px 0 0 0;
+    background: red;
+    width: 200px;
+    height: 100px;
+  }
+</style>
+  <div class="wrapper">
+    <div class="target">target example</div>
+  </div>
   <script type="text/javascript">
-    outerclick.addListener('.target', function(e) {
+    outerclick.addListener('.wrapper .target', function(e) {
       console.log('outer clicked!', e);
     });
   </script>

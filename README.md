@@ -5,6 +5,8 @@ OuterClick will fire the events when you click outside of the element.
 
 for client-side library.
 
+![Animated GIF](https://raw.github.com/koh110/outerclick/master/outerclick.gif)
+
 # Installation
 
 ```
