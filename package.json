@@ -1,6 +1,6 @@
 {
   "name": "outerclick",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "outside click event of the element",
   "repository": {
     "type": "git",
