@@ -1,13 +1,17 @@
 'use strict';
 
 const APP_ROOT = __dirname;
+const webpack = require('webpack');
 
 module.exports = {
-  entry: `${APP_ROOT}/src/entry.js`,
+  entry: {
+    'outerclick': `${APP_ROOT}/src/entry.js`,
+    'outerclick.min': `${APP_ROOT}/src/entry.js`
+  },
   devtool: '#source-map',
   output: {
     path: `${APP_ROOT}/dist`,
-    filename: 'outerclick.js',
+    filename: '[name].js',
     library: 'outerclick',
     libraryTarget: 'umd'
   },
@@ -25,5 +29,11 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      include: /\.min\.js$/,
+      minimize: true
+    })
+  ]
 };

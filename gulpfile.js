@@ -4,10 +4,12 @@ const path = require('path');
 const gulp = require('gulp');
 const plumber = require('gulp-plumber');
 const eslint = require('gulp-eslint');
+const header = require('gulp-header');
 const webpack = require('webpack');
 const browserSync = require('browser-sync');
 const notifier = require('node-notifier');
 const webpackConfig = require(`${__dirname}/webpack.config`);
+const pkg = require(`${__dirname}/package.json`);
 
 const APP_ROOT = path.resolve(__dirname);
 
@@ -68,7 +70,22 @@ gulp.task('lint', () => {
   .pipe(eslint.failOnError())
   .pipe(plumber.stop());
 });
-gulp.task('build', ['webpack']);
+gulp.task('build', ['webpack'], () => {
+  const banner = `/*
+ * ${pkg.name} ${pkg.version}
+ * ${pkg.description}
+ * This software is released under the ${pkg.license} License
+ * http://opensource.org/licenses/mit-license.php
+ *
+ * Copyright (C) 2015 ${pkg.author}, ${pkg.repository.url}
+ */
+`;
+  return gulp.src(Object.keys(webpackConfig.entry).map((key) => {
+    return `${webpackConfig.output.path}/${key}.js`;
+  }))
+  .pipe(header(banner))
+  .pipe(gulp.dest('./dist'));
+});
 gulp.task('server', () => {
   browserSync(config.server);
 });
@@ -76,9 +93,10 @@ gulp.task('reloadServer', () => {
   browserSync.reload();
 });
 gulp.task('watch', ['watch-webpack'], () => {
-  gulp.watch([
-    `${APP_ROOT}/${config.server.server.index}`,
-    `${webpackConfig.output.path}/${webpackConfig.output.filename}`
-  ], ['reloadServer']);
+  const watch = [`${APP_ROOT}/${config.server.server.index}`]
+  .concat(Object.keys(webpackConfig.entry).map((key) => {
+    return webpackConfig.entry[key];
+  }));
+  gulp.watch(watch, ['reloadServer']);
 });
 gulp.task('default', ['build', 'watch', 'server']);
