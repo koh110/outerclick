@@ -1,3 +1,11 @@
+/*
+ * outerclick 1.0.2
+ * outside click event of the element
+ * This software is released under the MIT License
+ * http://opensource.org/licenses/mit-license.php
+ *
+ * Copyright (C) 2015 koh110, https://github.com/koh110/outerclick.git
+ */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
