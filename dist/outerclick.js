@@ -1,11 +1,3 @@
-/*
- * outerclick 1.0.1
- * outside click event of the element
- * This software is released under the MIT License
- * http://opensource.org/licenses/mit-license.php
- *
- * Copyright (C) 2015 koh110, https://github.com/koh110/outerclick.git
- */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
@@ -63,6 +55,15 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	'use strict';
+	
+	if (!Element.prototype.matches) {
+	  Element.prototype.matches = Element.prototype.matchesSelector || Element.prototype.mozMatchesSelector || Element.prototype.msMatchesSelector || Element.prototype.oMatchesSelector || Element.prototype.webkitMatchesSelector || function (s) {
+	    var matches = (this.document || this.ownerDocument).querySelectorAll(s);
+	    var i = matches.length;
+	    while (--i >= 0 && matches.item(i) !== this) {}
+	    return i > -1;
+	  };
+	}
 	
 	var isClosest = function isClosest(target, selector) {
 	  var isExist = false;
