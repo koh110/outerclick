@@ -1,7 +1,13 @@
 {
   "name": "outerclick",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "outside click event of the element",
+  "keywords": [
+    "click",
+    "onclick",
+    "event",
+    "outside"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/koh110/outerclick.git"
